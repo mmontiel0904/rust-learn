@@ -6,11 +6,11 @@ pub fn guessing_game() {
     println!("Guess the number");
 
     let secret_number = rand::rng().random_range(1..=100);
-
-    let chances: i32 = 3;
+    let mut won = false;
+    let chances: i32 = 10;
     let mut attempts: i32 = 0;
 
-    println!("Secret number is {}", secret_number);
+    //println!("Secret number is {}", secret_number);
 
     while chances > attempts {
         println!(
@@ -26,7 +26,13 @@ pub fn guessing_game() {
             .read_line(&mut guess)
             .expect("Failed to read line");
 
-        let guess: i32 = guess.trim().parse().expect("Please type a number");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("I cant understand wha you type, try again, you loose one attempt 👆");
+                continue;
+            }
+        };
 
         println!("You guessed {}", guess);
 
@@ -34,9 +40,15 @@ pub fn guessing_game() {
             Ordering::Less => println!("Too small"),
             Ordering::Greater => println!("Too big"),
             Ordering::Equal => {
-                println!("You win");
+                won = true;
                 break;
             }
         }
+    }
+
+    if won {
+        println!("You won 🙌, the correct number is {}", secret_number);
+    } else {
+        println!("You loose 🥺, the correct number is {}", secret_number);
     }
 }
