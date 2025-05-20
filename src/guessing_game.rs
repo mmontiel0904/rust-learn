@@ -5,10 +5,10 @@ use std::io;
 pub fn guessing_game() {
     println!("Guess the number");
 
-    let secret_number = rand::rng().random_range(1..=100);
     let mut won = false;
-    let chances: i32 = 10;
     let mut attempts: i32 = 0;
+    let chances: i32 = 10;
+    let secret_number = rand::rng().random_range(1..=100);
 
     //println!("Secret number is {}", secret_number);
 
