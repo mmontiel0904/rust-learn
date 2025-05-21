@@ -1,6 +1,6 @@
 use rand::Rng;
 use std::cmp::Ordering;
-use std::io;
+use std::io::{self};
 
 pub fn guessing_game() {
     println!("Guess the number");
@@ -66,4 +66,86 @@ pub fn ask_run_again() -> bool {
     }
 
     choice.trim().eq_ignore_ascii_case("Y")
+}
+
+pub fn fahrenheit_celcius() {
+    fn from_f_deg() {
+        let f_deg: f64;
+
+        println!("Please type a Farenhit degrees to convert");
+
+        loop {
+            let mut input = String::new();
+            io::stdin()
+                .read_line(&mut input)
+                .expect("Failed to read input");
+            match input.trim().parse::<f64>() {
+                Ok(num) => {
+                    f_deg = num;
+                    break;
+                }
+                Err(_) => {
+                    println!("Failed to read a number, please try again");
+                    continue;
+                }
+            }
+        }
+
+        let c_deg = (f_deg - 32.00) * (5.00 / 9.00);
+
+        println!("{f_deg} fahrenheit is equal to {c_deg} celcius degrees")
+    }
+
+    fn from_c_deg() {
+        let c_deg: f64;
+
+        println!("Please type a Celcius degrees to convert");
+
+        loop {
+            let mut input = String::new();
+            io::stdin()
+                .read_line(&mut input)
+                .expect("Failed to read input");
+            match input.trim().parse::<f64>() {
+                Ok(num) => {
+                    c_deg = num;
+                    break;
+                }
+                Err(_) => {
+                    println!("Failed to read a number, please try again");
+                    continue;
+                }
+            }
+        }
+
+        let f_deg = (c_deg * (9.00 / 5.00)) + 32.00;
+
+        println!("{c_deg} celcius is equal to {f_deg} fahrenheit degrees")
+    }
+
+    loop {
+        let mut convertion_type = String::new();
+
+        println!("Please select the conversion Type");
+        println!("'1' for convert Celcius to fahrenheit");
+        println!("'2' for fahrenheit to Celcius");
+        io::stdin()
+            .read_line(&mut convertion_type)
+            .expect("Failed to read the input");
+
+        match convertion_type.trim() {
+            "1" => {
+                from_c_deg();
+                break;
+            }
+            "2" => {
+                from_f_deg();
+                break;
+            }
+            _ => {
+                println!("Wrong input, try again");
+                continue;
+            }
+        }
+    }
 }
