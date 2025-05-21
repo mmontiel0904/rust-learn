@@ -1,8 +1,8 @@
-mod guessing_game;
+mod functions;
 
 use std::io;
 
-use guessing_game::guessing_game;
+use functions::{ask_run_again, guessing_game};
 
 fn main() {
     loop {
@@ -20,15 +20,11 @@ fn main() {
         match choice.trim() {
             "1" => {
                 guessing_game();
-                println!("Run another function? Y/N");
-                let mut choice = String::new();
-                io::stdin()
-                    .read_line(&mut choice)
-                    .expect("Failed to read input");
-                match choice.trim() {
-                    "Y" => continue,
-                    _ => break,
-                };
+                if ask_run_again() {
+                    continue;
+                } else {
+                    break;
+                }
             }
             "0" => {
                 println!("Exiting the program");

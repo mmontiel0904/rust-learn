@@ -52,3 +52,18 @@ pub fn guessing_game() {
         println!("You loose 🥺, the correct number is {}", secret_number);
     }
 }
+
+pub fn ask_run_again() -> bool {
+    println!("Run another function? Y/N");
+    let mut choice = String::new();
+    io::stdin()
+        .read_line(&mut choice)
+        .expect("Failed to read input");
+    match choice.trim() {
+        "Y" => println!("Your input was 'Yes', loading options..."),
+        "N" => println!("Your input was 'No' program will finilize now"),
+        _ => println!("Unknown input: program will finilize now"),
+    }
+
+    choice.trim().eq_ignore_ascii_case("Y")
+}
