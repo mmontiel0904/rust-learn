@@ -2,14 +2,14 @@ mod functions;
 
 use std::io;
 
-use functions::{ask_run_again, fahrenheit_celcius, guessing_game};
+use functions::{ask_run_again, fahrenheit_celcius, fibonaizer, guessing_game};
 
 fn main() {
     loop {
         println!("Choose an option");
         println!("1. Play Guessing Game");
         println!("2. Fahrenheit<>Celcius converter");
-
+        println!("3. Get the nth Fibonacci number");
         println!("0. Exit the program");
 
         // Another Options
@@ -30,6 +30,14 @@ fn main() {
             }
             "2" => {
                 fahrenheit_celcius();
+                if ask_run_again() {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            "3" => {
+                fibonaizer();
                 if ask_run_again() {
                     continue;
                 } else {

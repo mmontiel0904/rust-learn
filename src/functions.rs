@@ -149,3 +149,35 @@ pub fn fahrenheit_celcius() {
         }
     }
 }
+
+pub fn fibonaizer() {
+    loop {
+        let mut user_input = String::new();
+        println!("Please enter a entire number to calculate the nth Fibonacci number");
+        io::stdin()
+            .read_line(&mut user_input)
+            .expect("Filed to read line");
+
+        match user_input.trim().parse::<u32>() {
+            Ok(num) => {
+                let mut fibonacci: (u32, u32) = (0, 0);
+                for num in 1..num {
+                    println!("Current num is {num}");
+                    fibonacci.0 = fibonacci.1;
+                    fibonacci.1 = num;
+                }
+                let final_fibonacci = fibonacci.0 + fibonacci.1;
+                println!("The fibonnaci {num} nummber is {final_fibonacci}");
+                if ask_run_again() {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            Err(_) => {
+                println!("Invalid input, please enter an integer");
+                continue;
+            }
+        }
+    }
+}
