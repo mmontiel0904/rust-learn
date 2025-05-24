@@ -200,3 +200,53 @@ pub fn fibonaizer() {
         }
     }
 }
+
+pub fn twelve_days_of_christmas() {
+    fn print_verse(day: i32) {
+        let gifts = [
+            "a Partridge in a Pear Tree",
+            "two Turtle Doves",
+            "three French Hens",
+            "four Calling Birds",
+            "five Gold Rings",
+            "six Geese a Laying",
+            "seven Swans a Swimming",
+            "eight Maids a Milking",
+            "nine Ladies Dancing",
+            "ten Lords a Leaping",
+            "eleven Pipers Piping",
+            "twelve Drummers Drumming",
+        ];
+
+        let ordinals = [
+            "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth",
+            "Tenth", "Eleventh", "Twelfth",
+        ];
+
+        match day {
+            1 => {
+                println!(
+                    "On the {} day of Christmas my true love sent to me",
+                    ordinals[(day - 1) as usize]
+                );
+                println!("{}.", gifts[(day - 1) as usize]);
+            }
+            _ => {
+                println!(
+                    "On the {} day of Christmas my true love sent to me",
+                    ordinals[(day - 1) as usize]
+                );
+                for line in 2..day + 1 {
+                    println!("{}", gifts[(line - 1) as usize]);
+                }
+                println!("And {}", gifts[0]);
+            }
+        }
+    }
+
+    for day in 1..13 {
+        println!(" ");
+        println!("=== Day {} ===", day);
+        print_verse(day);
+    }
+}

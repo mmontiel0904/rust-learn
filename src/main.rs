@@ -2,14 +2,17 @@ mod functions;
 
 use std::io;
 
-use functions::{ask_run_again, fahrenheit_celcius, fibonaizer, guessing_game};
+use functions::{
+    ask_run_again, fahrenheit_celcius, fibonaizer, guessing_game, twelve_days_of_christmas,
+};
 
 fn main() {
     loop {
         println!("Choose an option");
-        println!("1. Play Guessing Game");
-        println!("2. Fahrenheit<>Celcius converter");
-        println!("3. Get the nth Fibonacci number");
+        println!("1. Play Guessing Game ⁉️");
+        println!("2. Fahrenheit<>Celcius converter 🌡️");
+        println!("3. Get the nth Fibonacci number 🔢");
+        println!("4. Signme 12 days of chirstmas ❄️");
         println!("0. Exit the program");
 
         // Another Options
@@ -38,6 +41,14 @@ fn main() {
             }
             "3" => {
                 fibonaizer();
+                if ask_run_again() {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            "4" => {
+                twelve_days_of_christmas();
                 if ask_run_again() {
                     continue;
                 } else {
