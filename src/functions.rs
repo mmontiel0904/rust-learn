@@ -160,14 +160,33 @@ pub fn fibonaizer() {
 
         match user_input.trim().parse::<u32>() {
             Ok(num) => {
-                let mut fibonacci: (u32, u32) = (0, 0);
-                for num in 1..num {
-                    println!("Current num is {num}");
-                    fibonacci.0 = fibonacci.1;
-                    fibonacci.1 = num;
+                let mut prev2: i32 = 0;
+                let mut prev: i32 = 0;
+
+                let mut curr = 0;
+                for num in 1..num + 1 {
+                    //println!("{num}");
+                    match num {
+                        1 => {
+                            prev = 0;
+                            curr = 0;
+                        }
+                        2 => {
+                            prev = 1;
+                            curr = 1;
+                        }
+                        _ => {
+                            curr = prev2 + prev;
+
+                            prev2 = prev;
+                            prev = curr;
+                        }
+                    };
+
+                    //println!("Num {} is {}", num, curr);
                 }
-                let final_fibonacci = fibonacci.0 + fibonacci.1;
-                println!("The fibonnaci {num} nummber is {final_fibonacci}");
+
+                println!("The fibonnaci {} nummber is {}", num, curr);
                 if ask_run_again() {
                     continue;
                 } else {
